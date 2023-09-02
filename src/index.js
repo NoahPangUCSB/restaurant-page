@@ -1,10 +1,12 @@
 import displayHome from "./home";
 import header from "./header";
 import footer from "./footer";
+import { displayController as headerDisplay } from "./header";
 import './css/style.css';
 
 function displayHeader() {
     const headerContent = header();
+    
 
     return headerContent;
 }
@@ -27,6 +29,14 @@ function displayFooter() {
     return footerContent;
 }
 
+const displayController = () => {
+    
+    headerDisplay.displaySelectedTab();
+    headerDisplay.displayHoveredTab();
+};
+
 document.body.appendChild(displayHeader());
 document.body.appendChild(displayContent());
 document.body.appendChild(displayFooter());
+
+displayController();
