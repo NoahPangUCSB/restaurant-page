@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+    font-family: Roboto, sans-serif;
+}
+
+.content {
+    
+}
+
+.header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    background-color: #e2e8f0;
+}
+
+.tab-wrapper {
+    display: grid;
+    width: 30%;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.tab-wrapper button {
+    font-size: x-large;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.restaurant-name {
+    font-size: 45px;
+    display: grid;
+
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    justify-self: center;
+}
+
+.restaurant-name span {
+    grid-column: 2;
+    text-align: center;
+    margin: 20px;
+    line-height: 2.5;
+}
+.chef-icon {
+    /* margin-top: 20px; */
+}
+
+.home-main-img {
+   width: 100%;
+   align-self: center;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin-top: auto;
+    height: 40px;
+    background-color: #f9fafb;
+}
