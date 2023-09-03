@@ -30,13 +30,17 @@ export default function header() {
 }
 
 export const displayController = (() => {
-    let tabButtons = null;
-    const _getTabs = () => {
-        tabButtons = document.querySelectorAll("button");
+    let _tabButtons = null;
+    const getTabs = () => {
+        if(!_tabButtons){
+            _tabButtons = document.querySelectorAll("button");
+        }
+
+        return _tabButtons;
     }
 
     const _removeSelectedTabClass = () => {
-        tabButtons.forEach(element => {
+        _tabButtons.forEach(element => {
             element.classList.remove("selected-tab");
             element.classList.add("unselected-tab");
         });
@@ -47,33 +51,34 @@ export const displayController = (() => {
     }
 
     const displaySelectedTab = () => {
-        if(!tabButtons) {
-            _getTabs();
+        if(!_tabButtons) {
+            getTabs();
         }
 
-        tabButtons.forEach(element => {
+        _tabButtons.forEach(element => {
             element.addEventListener("click", () => {
                 _removeSelectedTabClass();
+                element.classList.remove("unselected-tab");
                 element.classList.add("selected-tab");
             })
         });
     }
 
     const displayHoveredTab = () => {
-        if(!tabButtons) {
-            _getTabs();
+        if(!_tabButtons) {
+            getTabs();
         }
 
-        tabButtons.forEach(element => {
+            _tabButtons.forEach(element => {
             element.addEventListener("mouseover", () => {
                 element.classList.add("hovered-tab");
             })
         });
 
-        tabButtons.forEach(element => {
+        _tabButtons.forEach(element => {
             element.addEventListener("mouseout", _removeHoveredTabClass);
         });
     }
     
-    return { displaySelectedTab, displayHoveredTab };
+    return { displaySelectedTab, displayHoveredTab, getTabs };
 })();

@@ -1,4 +1,5 @@
 import displayHome from "./home";
+import displayMenu from "./menu";
 import header from "./header";
 import footer from "./footer";
 import { displayController as headerDisplay } from "./header";
@@ -11,14 +12,18 @@ function displayHeader() {
     return headerContent;
 }
 
-function displayContent() {
-    const contentDiv = document.createElement("div");
-    contentDiv.id = "content";
+function displayContent(contentComponent, replace=false) {
+    let contentDiv = null;
+    if(replace) {
+        contentDiv = document.getElementById("content");
+    } else {
+        contentDiv = document.createElement("div");
+        contentDiv.id = "content";
+    }
 
-    const homeContent = displayHome();
+    const content = contentComponent();
 
-    console.log("h")
-    contentDiv.appendChild(homeContent);
+    contentDiv.replaceChildren(content);
 
     return contentDiv;
 }
@@ -29,14 +34,44 @@ function displayFooter() {
     return footerContent;
 }
 
-const displayController = () => {
-    
+const displayController = (() => {
+    document.body.appendChild(displayHeader());
+    document.body.appendChild(displayContent(displayHome));
+    document.body.appendChild(displayFooter());
+
     headerDisplay.displaySelectedTab();
     headerDisplay.displayHoveredTab();
-};
 
-document.body.appendChild(displayHeader());
-document.body.appendChild(displayContent());
-document.body.appendChild(displayFooter());
+    const switchTab = (e) => {
+        const btnClassList = e.srcElement.classList;
+        const tabDisplays = {
+            "home-btn": displayHome,
+            "menu-btn": displayMenu,
+        }
 
-displayController();
+        let tabDisplay = null
+
+        for(const className in tabDisplays) {
+            if(btnClassList.contains(className)) {
+                tabDisplay = tabDisplays[className];
+            }
+        }
+        
+        if(!tabDisplay) {
+            displayContent(displayHome, true);
+        } else {
+            displayContent(tabDisplay, true);
+        }
+    }
+
+    const switchTabController = () => {
+        const tabButtons = headerDisplay.getTabs();
+        tabButtons.forEach(element => {
+            element.addEventListener("click", switchTab)
+        });
+    }
+
+    switchTabController();
+})();
+
+
