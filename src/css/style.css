@@ -108,6 +108,46 @@ body {
     width: 70%;
 }
 
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.contact-info {
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.contact-title {
+    font-weight: bold;
+    font-size: 50px;
+    align-self: end;
+}
+
+.contact-email, .contact-phone {
+    font-size: 40px;
+    display: flex;
+    gap: 20px;
+}
+.contact-phone {
+    align-self: start;
+}
+
+.contact-email {
+    align-self: end;
+}
+
+.contact-img {
+    width: 100%;
+}
+
+.contact-info svg {
+    width: 30px;
+}
+
 .footer {
     display: flex;
     align-items: center;

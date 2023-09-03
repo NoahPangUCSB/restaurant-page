@@ -1,5 +1,6 @@
 import displayHome from "./home";
 import displayMenu from "./menu";
+import displayContact from "./contact";
 import header from "./header";
 import footer from "./footer";
 import { displayController as headerDisplay } from "./header";
@@ -47,6 +48,7 @@ const displayController = (() => {
         const tabDisplays = {
             "home-btn": displayHome,
             "menu-btn": displayMenu,
+            "contact-btn": displayContact
         }
 
         let tabDisplay = null
@@ -56,7 +58,7 @@ const displayController = (() => {
                 tabDisplay = tabDisplays[className];
             }
         }
-        
+
         if(!tabDisplay) {
             displayContent(displayHome, true);
         } else {
